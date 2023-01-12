@@ -1,0 +1,23 @@
+{
+  "name": "backend-clone-twitter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gisela Mariano",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "typeorm": "^0.3.11",
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.2",
+    "typescript": "^4.9.4"
+  }
+}
