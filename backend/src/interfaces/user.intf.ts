@@ -11,3 +11,8 @@ export interface IResCreateUser {
   password?: string;
   created_at: string;
 }
+
+export interface IReqLoginUser {
+  email: string;
+  password: string;
+}
