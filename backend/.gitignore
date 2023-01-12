@@ -1,3 +1,6 @@
+# Others
+src/migrations/*.ts
+
 # Logs
 logs
 *.log
