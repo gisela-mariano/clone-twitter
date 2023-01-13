@@ -1,3 +1,5 @@
+import { IResCreateTweet } from './tweet.intf';
+
 export interface IReqCreateUser {
   name: string;
   email: string;
@@ -19,4 +21,6 @@ export interface IReqLoginUser {
 
 export interface IResUserProfile {
   id: string;
+  name: string;
+  tweets: IResCreateTweet[];
 }
