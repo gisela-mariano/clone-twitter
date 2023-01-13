@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import User from './user.entity';
+import Comment from './comment.entity';
 
 @Entity('tweets')
 class Tweet {
@@ -23,6 +25,9 @@ class Tweet {
 
   @ManyToOne(() => User, (user) => user.tweets)
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.tweet)
+  comments: Comment[];
 }
 
 export default Tweet;

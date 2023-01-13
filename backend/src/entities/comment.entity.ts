@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import User from './user.entity';
+import Tweet from './tweet.entity';
 
 @Entity('comments')
 class Comment {
@@ -18,8 +19,11 @@ class Comment {
   @CreateDateColumn()
   created_at: string;
 
-  @ManyToOne(() => User, (user) => user.tweets)
+  @ManyToOne(() => User, (user) => user.comments)
   user: User;
+
+  @ManyToOne(() => Tweet, (tweet) => tweet.comments)
+  tweet: Tweet;
 }
 
 export default Comment;
