@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import Tweet from './tweet.entity';
 import Comment from './comment.entity';
+import TweetLikes from './like.entity';
 
 @Entity('users')
 class User {
@@ -30,6 +31,9 @@ class User {
 
   @OneToMany(() => Tweet, (tweet) => tweet.user)
   tweets: Tweet[];
+
+  @OneToMany(() => TweetLikes, (tweetLikes) => tweetLikes.user)
+  likes: TweetLikes[];
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];

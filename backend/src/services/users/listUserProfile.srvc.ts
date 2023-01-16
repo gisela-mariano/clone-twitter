@@ -1,16 +1,16 @@
-import { IResUserProfile } from '../../interfaces/user.intf';
 import { userRepository } from '../../repositories';
 
-const listUserProfileService = async (id: string): Promise<IResUserProfile> => {
+const listUserProfileService = async (id: string) => {
   const listUsers = await userRepository
     .createQueryBuilder('user')
     .select(['user.id', 'user.name', 'tweet'])
-    .leftJoin('user.tweets', 'tweet', 'tweet.userId = user.id')
+    .leftJoin('user.tweets', 'tweet')
+    .loadRelationCountAndMap('tweet.likes', 'tweet.likes')
     .where('user.id = :id', { id })
-    .orderBy('tweet.created_at', 'DESC')
+    .orderBy('tweet.created_at', 'ASC')
     .getOne();
 
-  return listUsers as IResUserProfile;
+  return listUsers;
 };
 
 export default listUserProfileService;
