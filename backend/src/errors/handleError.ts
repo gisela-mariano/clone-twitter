@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import AppError from './AppError';
 
-const handleError = (err: Error, req: Request, res: Response) => {
+const handleError = (err: Error, _: Request, res: Response) => {
   if (err instanceof AppError)
     return res.status(err.statusCode).json({ message: err.message });
 

@@ -1,12 +1,13 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import AppError from '../../errors/AppError';
 import createTweetService from '../../services/tweets/createTweet.srvc';
+import { IModifiedRequest } from '../../interfaces';
 
-const createTweetController = async (req: Request, res: Response) => {
+const createTweetController = async (req: IModifiedRequest, res: Response) => {
   try {
     const tweet = await createTweetService({
       ...req.body,
-      userId: req.params.id,
+      userId: req.decodedToken?.id,
     });
 
     return res.status(201).json(tweet);
