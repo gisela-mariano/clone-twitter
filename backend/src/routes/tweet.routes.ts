@@ -4,6 +4,7 @@ import verifyAuthTokenMiddleware from '../middlewares/user/verifyAuthToken.mdlw'
 import verifyUserExistsMiddleware from '../middlewares/user/verifyUserExists.mdlw';
 import listOneTweetController from '../controllers/tweets/listOneTweet.ctrl';
 import verifyTweetExistsMiddleware from '../middlewares/tweet/verifyTweetExists.mdlw';
+import listAllTweetsController from '../controllers/tweets/listAllTweets.ctrl';
 
 const tweetRoutes = Router();
 
@@ -13,6 +14,7 @@ tweetRoutes.post(
   verifyUserExistsMiddleware,
   createTweetController,
 );
+tweetRoutes.get('', listAllTweetsController);
 tweetRoutes.get('/:id', verifyTweetExistsMiddleware, listOneTweetController);
 
 export default tweetRoutes;
