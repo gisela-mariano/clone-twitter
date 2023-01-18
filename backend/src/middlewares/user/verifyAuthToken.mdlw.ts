@@ -1,9 +1,9 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { IDecodedToken } from '../../interfaces';
+import { IDecodedToken, IModifiedRequest } from '../../interfaces';
 
 const verifyAuthTokenMiddleware = async (
-  req: Request,
+  req: IModifiedRequest,
   res: Response,
   next: NextFunction,
 ) => {
@@ -17,7 +17,12 @@ const verifyAuthTokenMiddleware = async (
   jwt.verify(splitedToken, String(process.env.SECRET_KEY), (err, decoded) => {
     if (err) return res.status(401).json({ message: 'Invalid token' });
 
-    req.params.id = (decoded as IDecodedToken).id;
+    console.log(decoded, 'decoded token ----------------------------------');
+
+    req.decodedToken = {
+      id: (decoded as IDecodedToken).id,
+      name: (decoded as IDecodedToken).name,
+    };
 
     next();
   });
